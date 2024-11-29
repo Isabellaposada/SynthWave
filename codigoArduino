@@ -1,4 +1,10 @@
-int nota1 = 2;
+int analogPin = A0;
+
+
+int buttonState = 0;
+const int counterPin = 13;
+const int buzzer = 10;
+const int nota1 = 2;
 int nota2 = 3;
 int nota3 = 4;
 int nota4 = 5;
@@ -7,10 +13,42 @@ int nota6 = 7;
 int nota7 = 8;
 int nota8 = 9;
 
-int buzzer = 10;
+const int Qnote = 441.1;
+const int Hnote = Qnote*2;
+const int Wnote = Qnote*4;
+const int Enote = Qnote/2;
+const int Snote = Qnote/4;
+const int b4b = 466;
+const int b4 = 494;
+const int c5 = 523;
+const int c5s = 554;
+const int d5 = 587;
+const int d5s = 622;
+const int e5 = 659;
+const int f5 = 699;
+const int f5s = 740;
+const int g5 = 784;
+const int g5s = 831;
+const int a5 = 880;
+const int a5s = 932;
+const int b5 = 988;
+const int c6 = 1047;
+const int c6s = 1109;
+const int d6 = 1175;
+const int d6s = 1245;
+const int e6 = 1319;
+const int f6 = 1397;
+const int f6s = 1480;
+const int g6 = 1568;
+const int g6s = 1661;
+const int a6 = 1760;
+const int a6s = 1865;
+const int b6 = 1976;
+const int c7 = 1093;
+const int c7s = 2217;
+const int d7 = 2349;
 
-void setup()
-{
+void setup(){
  pinMode(nota1, INPUT);
  pinMode(nota2, INPUT);
  pinMode(nota3, INPUT);
@@ -19,12 +57,17 @@ void setup()
  pinMode(nota6, INPUT);
  pinMode(nota7, INPUT);
  pinMode(nota8, INPUT);
- 
  pinMode(buzzer, OUTPUT);
+ pinMode(counterPin, OUTPUT);
+
+Serial.begin(9600);
 }
 
-void loop()
-{
+void loop(){
+ int sensorValue = analogRead(analogPin);
+  Serial.println(sensorValue);
+  delay(100);
+
  int v1 = digitalRead(nota1);
  int v2 = digitalRead(nota2);
  int v3 = digitalRead(nota3);
@@ -33,30 +76,273 @@ void loop()
  int v6 = digitalRead(nota6);
  int v7 = digitalRead(nota7);
  int v8 = digitalRead(nota8);
- 
-  if(v1 == 1){
-    tone(buzzer, 1046, 100);
+
+// Canción si se tocan unas notas especificas
+  if (v1 == 1 && v3 == 1) {
+    tone(buzzer, f5s);
+    delay(Qnote+Enote);
+    noTone(buzzer);
+    delay(50);
+  
+    tone(buzzer, d5);
+    delay(Hnote);
+    noTone(buzzer);
+    delay(50);
+  
+    tone(buzzer, d5);
+    delay(Snote);
+    noTone(buzzer);
+    delay(12.5);
+  
+    tone(buzzer, e5);
+    delay(Snote);
+    noTone(buzzer);
+    delay(50);
+  
+    tone(buzzer, f5);
+    delay(Enote+Snote);
+    noTone(buzzer);
+    delay(25);
+  
+    tone(buzzer, e5);
+    delay(Enote+Snote);
+    noTone(buzzer);
+    delay(25);
+  
+    tone(buzzer, d5);
+    delay(Enote);
+    noTone(buzzer);
+    delay(50);
+  
+    tone(buzzer, c5s);
+    delay(Enote+Snote);
+    noTone(buzzer);
+    delay(25);
+  
+    tone(buzzer, d5);
+    delay(Enote+Snote);
+    noTone(buzzer);
+    delay(25);
+  
+    tone(buzzer, e5);
+    delay(Enote);
+    noTone(buzzer);
+    delay(25);
+  
+    tone(buzzer, f5s);
+    delay(Qnote+Enote);
+    noTone(buzzer);
+    delay(50);
+  
+    tone(buzzer, b5);
+    delay(Qnote+Enote);
+    noTone(buzzer);
+    delay(50);
+  
+    tone(buzzer, b4);
+    delay(Enote);
+    noTone(buzzer);
+    delay(25);
+  
+    tone(buzzer, c5s);
+    delay(Enote);
+    noTone(buzzer);
+    delay(50);
+  
+    tone(buzzer, d5);
+    delay(Enote+Snote);
+    noTone(buzzer);
+    delay(25);
+  
+    tone(buzzer, e5);
+    delay(Enote+Snote);
+    noTone(buzzer);
+    delay(25);
+  
+    tone(buzzer, d5);
+    delay(Enote);
+    noTone(buzzer);
+    delay(25);
+  
+    tone(buzzer, c5s);
+    delay(Enote+Snote);
+    noTone(buzzer);
+    delay(25);
+  
+    tone(buzzer, a5);
+    delay(Enote+Snote);
+    noTone(buzzer);
+    delay(25);
+  
+    tone(buzzer, g5);
+    delay(Enote);
+    noTone(buzzer);
+    delay(50);
+
+    tone(buzzer, f6s);
+    delay(Qnote+Enote);
+    noTone(buzzer);
+    delay(50);
+
+    tone(buzzer, d6);
+    delay(Hnote);
+    noTone(buzzer);
+    delay(50);
+
+    tone(buzzer, d6);
+    delay(Snote);
+    noTone(buzzer);
+    delay(12.5);
+
+    tone(buzzer, e6);
+    delay(Snote);
+    noTone(buzzer);
+    delay(50);
+
+    tone(buzzer, f6);
+    delay(Enote+Snote);
+    noTone(buzzer);
+    delay(25);
+
+    tone(buzzer, e6);
+    delay(Enote+Snote);
+    noTone(buzzer);
+    delay(25);
+
+    tone(buzzer, d6);
+    delay(Enote);
+    noTone(buzzer);
+    delay(50);
+
+    tone(buzzer, c6s);
+    delay(Enote+Snote);
+    noTone(buzzer);
+    delay(25);
+
+    tone(buzzer, d6);
+    delay(Enote+Snote);
+    noTone(buzzer);
+    delay(25);
+
+    tone(buzzer, e6);
+    delay(Enote);
+    noTone(buzzer);
+    delay(25);
+
+    tone(buzzer, f6s);
+    delay(Qnote+Enote);
+    noTone(buzzer);
+    delay(50);
+
+    tone(buzzer, b6);
+    delay(Qnote+Enote);
+    noTone(buzzer);
+    delay(50);
+
+    tone(buzzer, b6);
+    delay(Enote);
+    noTone(buzzer);
+    delay(50);
+
+    tone(buzzer, c7s);
+    delay(Enote);
+    noTone(buzzer);
+    delay(25);
+
+    tone(buzzer, d7);
+    delay(Enote+Snote);
+    noTone(buzzer);
+    delay(25);
+
+    tone(buzzer, g6);
+    delay(Enote+Snote);
+    noTone(buzzer);
+    delay(25);
+
+    tone(buzzer, f6s);
+    delay(Enote);
+    noTone(buzzer);
+    delay(50);
+
+    tone(buzzer, f6);
+    delay(Snote+Enote);
+    noTone(buzzer);
+    delay(25);
+
+    tone(buzzer, d7);
+    delay(Enote+Snote);
+    noTone(buzzer);
+    delay(25);
+
+    tone(buzzer, a6s);
+    delay(Enote);
+    noTone(buzzer);
+    delay(25);
+
+    tone(buzzer, b6);
+    delay(Qnote);
+    noTone(buzzer);
+    delay(25);
+
+    noTone(buzzer);
+    delay(25);
   }
+  // Do
+   if(v1 == 1){
+    tone(buzzer, c5, 100); // bien
+    digitalWrite(counterPin, HIGH); // Set the pin high
+    delay(100);           //
+    digitalWrite(counterPin, LOW);   // Set the pin low
+  }
+  // Re
   if(v2 == 1){
-    tone(buzzer, 1174, 100);
+    tone(buzzer, d5, 100);
+    digitalWrite(counterPin, HIGH); // Set the pin high
+    delay(100);           // Keep it high for a short time (10 microseconds)
+    digitalWrite(counterPin, LOW);   // Set the pin low
   }
+  // Mi
   if(v3 == 1){
-    tone(buzzer, 1318, 100);
+    tone(buzzer, e5, 100); // bien 
+    digitalWrite(counterPin, HIGH); // Set the pin high
+    delay(100);           // Keep it high for a short time (10 microseconds)
+    digitalWrite(counterPin, LOW);   // Set the pin low
   }
+  // Fa
   if(v4 == 1){
-    tone(buzzer, 1396, 100);
+    tone(buzzer, f5, 100); // bien  
+    digitalWrite(counterPin, HIGH); // Set the pin high
+    delay(100);           // Keep it high for a short time (10 microseconds)
+    digitalWrite(counterPin, LOW);   // Set the pin low
   }
+  // Sol
   if(v5 == 1){
-    tone(buzzer, 1567, 100);
+    tone(buzzer, g5, 100); // 
+    digitalWrite(counterPin, HIGH); // Set the pin high
+    delay(100);           // Keep it high for a short time (10 microseconds)
+    digitalWrite(counterPin, LOW);   // Set the pin low
   }
+  // La
   if(v6 == 1){
-    tone(buzzer, 1760, 100);
+    tone(buzzer, a5, 100);
+    digitalWrite(counterPin, HIGH); // Set the pin high
+    delay(100);           // Keep it high for a short time (10 microseconds)
+    digitalWrite(counterPin, LOW);   // Set the pin low
   }
+  // Si
   if(v7 == 1){
-    tone(buzzer, 1975, 100);
+    tone(buzzer, b5, 100);
+    digitalWrite(counterPin, HIGH); // Set the pin high
+    delay(100);           // Keep it high for a short time (10 microseconds)
+    digitalWrite(counterPin, LOW);   // Set the pin low
   }
+  //Do en la siguiente octava
   if(v8 == 1){
-    tone(buzzer, 2093, 100);
+    tone(buzzer, c6, 100); // bien
+    digitalWrite(counterPin, HIGH); // Set the pin high
+    delay(100);           // Keep it high for a short time (10 microseconds)
+    digitalWrite(counterPin, LOW);   // Set the pin low
   }
   delay(10);
+  // Reconocimiento de las frecuencias 
 }
